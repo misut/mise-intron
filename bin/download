@@ -1,0 +1,21 @@
+#!/bin/sh
+set -e
+
+REPO="misut/intron"
+VERSION="$ASDF_INSTALL_VERSION"
+
+OS=$(uname -s)
+ARCH=$(uname -m)
+
+if [ "$OS" != "Darwin" ] || [ "$ARCH" != "arm64" ]; then
+    echo "error: only macOS ARM (Apple Silicon) is currently supported"
+    exit 1
+fi
+
+PLATFORM="aarch64-apple-darwin"
+URL="https://github.com/$REPO/releases/download/v$VERSION/intron-v$VERSION-$PLATFORM.tar.gz"
+
+echo "downloading intron v$VERSION..."
+curl -fsSL "$URL" -o "$ASDF_DOWNLOAD_PATH/intron.tar.gz"
+tar -xzf "$ASDF_DOWNLOAD_PATH/intron.tar.gz" -C "$ASDF_DOWNLOAD_PATH"
+rm "$ASDF_DOWNLOAD_PATH/intron.tar.gz"

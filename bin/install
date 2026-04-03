@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+mkdir -p "$ASDF_INSTALL_PATH/bin"
+cp "$ASDF_DOWNLOAD_PATH/intron" "$ASDF_INSTALL_PATH/bin/intron"
+chmod +x "$ASDF_INSTALL_PATH/bin/intron"
+
+echo "installed intron $ASDF_INSTALL_VERSION"

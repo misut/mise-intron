@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+REPO="misut/intron"
+
+curl -fsSL "https://api.github.com/repos/$REPO/releases" \
+    | grep '"tag_name"' \
+    | sed 's/.*"tag_name": "v\(.*\)".*/\1/' \
+    | tr '\n' ' '
+
+echo ""
