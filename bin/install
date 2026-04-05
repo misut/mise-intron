@@ -1,8 +1,13 @@
 #!/bin/sh
 set -e
 
+BIN="intron"
+case "$(uname -s)" in
+    MINGW*|MSYS*) BIN="intron.exe" ;;
+esac
+
 mkdir -p "$ASDF_INSTALL_PATH/bin"
-cp "$ASDF_DOWNLOAD_PATH/intron" "$ASDF_INSTALL_PATH/bin/intron"
-chmod +x "$ASDF_INSTALL_PATH/bin/intron"
+cp "$ASDF_DOWNLOAD_PATH/$BIN" "$ASDF_INSTALL_PATH/bin/$BIN"
+chmod +x "$ASDF_INSTALL_PATH/bin/$BIN"
 
 echo "installed intron $ASDF_INSTALL_VERSION"
